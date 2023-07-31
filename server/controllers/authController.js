@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const {hashPassword, comparePassword} = require ('../helpers/auth')
-const { copy } = require('../routes/authRoutes')
+// const { copy } = require('../routes/authRoutes')
 const jwt = require('jsonwebtoken')
 
 const test = (req, res) => {
@@ -31,10 +31,10 @@ const registerUser = async (req, res) =>{
             })
         }
 
-        const hashPassword = await hashPassword(password)
+        const hashedPassword = await hashPassword(password)
         // Create user in database
         const user = await User.create({
-            name, email, password:hashPassword
+            name, email, password:hashedPassword
         })
         return res.json(user)
 
